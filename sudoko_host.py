@@ -1,4 +1,3 @@
-from urllib import request
 from flask import Flask, render_template, request
 from solver import Suduko,puzzle
 
@@ -26,6 +25,7 @@ def input_grid(data):
 
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route('/')
 def index():
@@ -50,4 +50,4 @@ def solved():
 def salvador():
     return "Hello, SK"
 
-app.run(host='0.0.0.0', port=81)
+app.run(host='0.0.0.0', port=81, use_reloader=True)
