@@ -1,9 +1,21 @@
 M = 9
+def input_validator(grid):
+    for row in range(M):
+        for col in range(M):
+            num=grid[row][col]
+            grid[row][col]=-1
+            if ( num!=0 and not solve(grid,row,col,num) ) :
+                grid[row][col]=num
+                return False
+            grid[row][col]=num
+    return True
+
 def puzzle(a):
     for i in range(M):
         for j in range(M):
             print(a[i][j],end = " ")
         print()
+
 def solve(grid, row, col, num):
     for x in range(9):
         if grid[row][x] == num:
@@ -43,7 +55,7 @@ def Suduko(grid, row, col):
  
 if __name__ == "__main__":
     '''0 means the cells where no value is assigned'''
-    grid = [[2, 2, 0, 0, 3, 0, 9, 0, 1],
+    grid = [[2, 0, 0, 0, 3, 0, 9, 0, 1],
             [0, 1, 0, 0, 0, 4, 0, 0, 0],
         [4, 0, 7, 0, 0, 0, 2, 0, 8],
         [0, 0, 5, 2, 0, 0, 0, 0, 0],
@@ -51,9 +63,18 @@ if __name__ == "__main__":
         [0, 4, 0, 0, 0, 3, 0, 0, 0],
         [0, 0, 0, 3, 6, 0, 0, 7, 2],
         [0, 7, 0, 0, 0, 0, 0, 0, 3],
-        [9, 0, 3, 0, 0, 0, 6, 0, 4]]
-    
-    if (Suduko(grid, 0, 0)):
-        puzzle(grid)
+        [9, 0, 3, 0, 0, 0, 6, 0, 0]]
+    grid2 = [[2, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    if(input_validator(grid2)):
+        Suduko(grid2, 0, 0)
+        puzzle(grid2)
     else:
-        print("Solution does not exist:(")
+        print("Invalid") 

@@ -1,5 +1,5 @@
 from flask import *
-from solver import Suduko
+from solver import Suduko,input_validator
 
 def input_grid(data):
     initial=[[' ' for i in range(9)] for j in range(9)]
@@ -11,6 +11,15 @@ def input_grid(data):
                 x=data[ind_name]
                 grid[row][col]=int(x)
                 initial[row][col]=x
+    # grid = [[2, 2, 0, 0, 0, 0, 0, 0, 0],
+    #         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0, 0, 1]]
     return initial,grid
 
 
@@ -22,17 +31,21 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 def index():
     return render_template("empty_sudoko.html")
 
+@app.route('/invalid')
+def invalid():
+    return render_template("invalid.html")
+
 @app.route('/solved' , methods=['POST'])
 def solved():    
     
     data=request.form
     initial,grid = input_grid(data)
 
-    if (Suduko(grid, 0, 0)):
-        pass
-    # else:
-    #     print("Invalid") 
-    #     return redirect(url_for('index'))  
+    if(input_validator(grid)):
+        Suduko(grid, 0, 0)
+    else:
+        print("Invalid Input") 
+        return redirect(url_for('invalid'))  
     
     return render_template("solved_sudoko.html", initial=initial ,result=grid)
 
