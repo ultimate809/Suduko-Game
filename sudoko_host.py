@@ -7,7 +7,7 @@ def input_grid(data):
     for row in range(9):
         for col in range(9):
             ind_name=str(row)+"_"+str(col)
-            if(data[ind_name] != None and data[ind_name].isnumeric() and data[ind_name] in range(1,10)):
+            if(data[ind_name] != None and data[ind_name].isnumeric() and int(data[ind_name]) in range(1,10)):
                 x=data[ind_name]
                 grid[row][col]=int(x)
                 initial[row][col]=x

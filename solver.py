@@ -3,7 +3,7 @@ def input_validator(grid):
     for row in range(M):
         for col in range(M):
             num=grid[row][col]
-            if(num not in range(1,10)):
+            if(num not in range(0,10)):
                 return False
             grid[row][col]=-1
             if ( num!=0 and not solve(grid,row,col,num) ) :
