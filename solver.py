@@ -43,7 +43,7 @@ def Suduko(grid, row, col):
  
 if __name__ == "__main__":
     '''0 means the cells where no value is assigned'''
-    grid = [[2, 5, 0, 0, 3, 0, 9, 0, 1],
+    grid = [[2, 2, 0, 0, 3, 0, 9, 0, 1],
             [0, 1, 0, 0, 0, 4, 0, 0, 0],
         [4, 0, 7, 0, 0, 0, 2, 0, 8],
         [0, 0, 5, 2, 0, 0, 0, 0, 0],
