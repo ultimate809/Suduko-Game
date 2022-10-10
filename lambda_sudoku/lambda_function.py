@@ -40,7 +40,7 @@ def get_sudoku_grid(initial_data):
         for col in range(9):
             if(initial_data[row][col] == '' or initial_data[row][col] == ' ' or initial_data[row][col] == None):
                 grid[row][col] = 0
-            elif(initial_data[row][col].isnumeric() == False):
+            elif(initial_data[row][col].isnumeric() == False or int(initial_data[row][col]) == 0):
                 grid[row][col] = -1
             else:
                 grid[row][col] = int(initial_data[row][col])
